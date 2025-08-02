@@ -2778,7 +2778,7 @@ material WingModColour
 			lighting off
 			texture_unit
 			{
-				texture wingsTex2.jpg
+				texture wingsTex.jpg
 				colour_op_ex modulate src_texture src_manual 1 1 1 1
 			}
 			cull_hardware none

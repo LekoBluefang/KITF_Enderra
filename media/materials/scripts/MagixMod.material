@@ -2755,7 +2755,7 @@ material WingModColour
 			}
 			texture_unit
 			{
-				texture wingsTex2.jpg
+				texture wingsTex.jpg
 				tex_coord_set 0
 			}
 			cull_hardware none

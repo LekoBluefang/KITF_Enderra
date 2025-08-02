@@ -201,6 +201,7 @@ material GUIMat/Title
 			{
 				texture title.png
 				tex_address_mode clamp
+				scale 0.5 1.35
 			}
 		}
 	}

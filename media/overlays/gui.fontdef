@@ -20,3 +20,17 @@ TempusSans
 	size 		64
 	resolution 	55
 }
+Charybdis
+{
+	type 		truetype
+	source		charybdis.regular.ttf
+	size		32
+	resolution	86
+}
+CaslonAntique
+{
+	type 		truetype
+	source 		CaslonAntique.ttf
+	size 		64
+	resolution 	55
+}

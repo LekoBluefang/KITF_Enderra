@@ -74,6 +74,7 @@ enum BUTTON
  BUTTON_SELECTBOX4,
  BUTTON_NEWGAME,
  BUTTON_MULTIPLAYER,
+ BUTTON_SETTINGS,
  BUTTON_QUIT,
  BUTTON_CHARSCREEN_L1,
  BUTTON_CHARSCREEN_R1,
@@ -598,6 +599,8 @@ public:
 		mButtonText[BUTTON_MULTIPLAYER] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText2");
 		mButton[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton3");
 		mButtonText[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText3");
+		mButton[BUTTON_SETTINGS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton4");
+		mButtonText[BUTTON_SETTINGS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText4");
 
 		OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->hide();
 		OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBoxText")->setCaption(mDef->loadUpdateCaption());
@@ -666,7 +669,6 @@ public:
 		mButtonText[BUTTON_CHARSCREENNEXT] = OverlayManager::getSingleton().getOverlayElement("GUI/CharScreenButtonTextNext");
 		mButton[BUTTON_CHARSCREENDELETE] = OverlayManager::getSingleton().getOverlayElement("GUI/CharScreenButtonDelete");
 		mButtonText[BUTTON_CHARSCREENDELETE] = OverlayManager::getSingleton().getOverlayElement("GUI/CharScreenButtonTextDelete");
-
 		for(int i=0;i<MAX_CHARSCREENTEXT;i++)
 		{
 			const String tNum = StringConverter::toString(i+1);
@@ -1464,22 +1466,12 @@ public:
 		const vector<Skill>::type tSkillChange = mUnitManager->getPlayer()->popSkillChangedList();
 		for(int i=0;i<(int)tSkillChange.size();i++)
 		{
-			if(!mGameStateManager->isCampaign())
-			{
-				mNetworkManager->sendSkillUpdate(tSkillChange[i].name, tSkillChange[i].stock);
-			}
-			if(getSkillText()==tSkillChange[i].name)
-			{
-				updateSkillText(tSkillChange[i].stock > 0 ? &tSkillChange[i] : 0);
-			}
+			if (!mGameStateManager->isCampaign())mNetworkManager->sendSkillUpdate(tSkillChange[i].name, tSkillChange[i].stock);
+			if(getSkillText()==tSkillChange[i].name)updateSkillText(tSkillChange[i].stock>0?&tSkillChange[i]:0);
 		}
 		//Skill pickup
 		const String tPickup = mUnitManager->popPickupText();
-		if(tPickup != "")
-		{
-			showPickupText(tPickup);
-		}
-
+		if(tPickup!="")showPickupText(tPickup);
 		//New attacks
 		if(mUnitManager->popPlayerHasNewAttack())
 		{
@@ -1984,6 +1976,7 @@ public:
 				mButton[BUTTON_NEWGAME]->hide();
 				mButton[BUTTON_MULTIPLAYER]->hide();
 				mButton[BUTTON_QUIT]->hide();
+				mButton[BUTTON_SETTINGS]->hide();
 				OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->hide();
 				OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenTitle")->setDimensions(8,1.2);
 				OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenTitle")->setPosition(-3.5,-0.29);
@@ -2009,6 +2002,7 @@ public:
 				mButton[BUTTON_NEWGAME]->show();
 				mButton[BUTTON_MULTIPLAYER]->show();
 				mButton[BUTTON_QUIT]->show();
+				mButton[BUTTON_SETTINGS]->show();
 				OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->show();
 				logoCount = 6;
 			}
@@ -2041,7 +2035,6 @@ public:
 				mButton[BUTTON_QUIT]->show();
 				OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->show();
 				*/
-
 				logoCount = 5;
 				return true;
 			}
@@ -2935,24 +2928,13 @@ public:
 			{
 				Real tFontHeight = 0;
 				short tApparentLine = 0;
-				const short tButtonLine = getListButtonLine(GUI_ITEMBOX, tFontHeight, tApparentLine);
-
-				if (tButtonLine == -1 || tButtonLine >= (int)MAX_EQUIP)
-				{
-					return;
-				}
+				const short tButtonLine = getListButtonLine(GUI_ITEMBOX,tFontHeight,tApparentLine);
+				if(tButtonLine==-1 || tButtonLine>=(int)MAX_EQUIP)return;
 
 				mListSelectTarget = mHoverWindow;
 				const String tItem = mUnitManager->getPlayer()->getEquip(tButtonLine);
-
-				if(tItem!="")
-				{
-					listButtonData = mDef->getItemName(tItem);
-				}
-				else
-				{
-					listButtonData = "";
-				}
+				if(tItem!="")listButtonData = mDef->getItemName(tItem);
+				else listButtonData = "";
 				listButtonLine = tButtonLine;
 
 				//Highlight
@@ -2971,22 +2953,14 @@ public:
 						mButtonText[BUTTON_LISTSELECT3]->setCaption("Delete");
 						mButton[BUTTON_LISTSELECT3]->show();
 					}
-					else
-					{
-						mButton[BUTTON_LISTSELECT3]->hide();
-					}
-
+					else mButton[BUTTON_LISTSELECT3]->hide();
 					mBox[GUI_LISTSELECTBOX]->setDimensions(0.1,0.04*(mButton[BUTTON_LISTSELECT3]->isVisible()?3:2));
 					mBox[GUI_LISTSELECTBOX]->setPosition(cursorX+0.02,cursorY+0.02);
 				}
-				else
-				{
-					mBox[GUI_LISTSELECTBOX]->hide();
-				}
+				else mBox[GUI_LISTSELECTBOX]->hide();
 
 				return;
 			}
-
 			if(mHoverWindow==mBox[GUI_STASHBOX])	//stashbox options
 			{
 				Real tFontHeight = 0;
@@ -3088,6 +3062,12 @@ public:
 					toggleInputMode(false,OverlayManager::getSingleton().getOverlayElement("GUI/LogonUsernameText"),"Username: ",15,false,logonUsername,false);
 				else
 					toggleInputMode(false,OverlayManager::getSingleton().getOverlayElement("GUI/LogonPasswordText"),"Password: ",15,false,logonPassword,false,false,true);
+				return;
+			}
+			if (mHoverButton == mButton[BUTTON_SETTINGS])	//main menu settings
+			{
+				showStartScreenOverlay(false);
+				showOptionsOverlay(true);
 				return;
 			}
 			if(mHoverButton==mButton[BUTTON_LOGONBACK])	//back to startscreen
@@ -4518,26 +4498,12 @@ public:
 	}
 	const short getListButtonLine(const unsigned short &boxID, Real &fontHeight, short &apparentLine)
 	{
-		if(boxID>=MAX_BOXES)
-		{
-			return -1;
-		}
-		
-		if(!mBox[boxID] || !mBoxText[boxID])
-		{
-			return -1;
-		}
+		if(boxID>=MAX_BOXES)return -1;
+		if(!mBox[boxID] || !mBoxText[boxID])return -1;
 		
 		const Real tCharHeight = StringConverter::parseReal(mBoxText[boxID]->getParameter("char_height"));
-		if(tCharHeight==0)
-		{
-			return -1;
-		}
-		else
-		{
-			fontHeight = tCharHeight;
-		}
-		
+		if(tCharHeight==0)return -1;
+		else fontHeight = tCharHeight;
 		const Real tLines = (mBox[boxID]->getHeight()-mBoxText[boxID]->getTop())/tCharHeight - 1;
 		
 		const Real tY = cursorY - mBox[boxID]->getTop();

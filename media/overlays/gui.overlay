@@ -1538,7 +1538,7 @@ GUIOverlay/Chat
 
 		element TextArea(GUI/TextInputBoxText) : GUITemplate/BasicText
 		{
-			font_name Charybdis
+			font_name Tahoma
     			char_height 0.028
 			left 0.008
    			top 0.008
@@ -1591,7 +1591,7 @@ GUIOverlay/Chat
 
 		element TextArea(GUI/TextOutputBoxText) : GUITemplate/BasicText
 		{
-			font_name Charybdis
+			font_name Tahoma
     			char_height 0.026
 			left 0.008
    			top 0.008

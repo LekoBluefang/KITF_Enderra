@@ -2576,7 +2576,7 @@ public:
 				//Hover
 				if(!mHoverButton)
 				{
-					mScrollerMarker[i]->setMaterialName("GUIMat/ButtonOver");
+					mScrollerMarker[i]->setMaterialName("GUIMat/ScrollerMarkerOver");
 					//not held before hovering
 					if(!leftClick)
 					{
@@ -2587,13 +2587,13 @@ public:
 				//for cases where: hovered, held, unhovered, hovered again
 				else if(mHoverButton==mScrollerMarker[i] && leftClick)
 				{
-					mScrollerMarker[i]->setMaterialName("GUIMat/ButtonDown");
+					mScrollerMarker[i]->setMaterialName("GUIMat/ScrollerMarkerDown");
 				}
 			}
 			else 
 			{
 				//Unhover
-				if(mScrollerMarker[i]->getMaterialName()!="GUIMat/ButtonUp" && !leftClick)mScrollerMarker[i]->setMaterialName("GUIMat/ButtonUp");
+				if(mScrollerMarker[i]->getMaterialName()!="GUIMat/ScrollerMarkerUp" && !leftClick)mScrollerMarker[i]->setMaterialName("GUIMat/ScrollerMarkerUp");
 				//unhovered and not held
 				if(mHoverButton==mScrollerMarker[i] && !leftClick)mHoverButton = 0;
 			}

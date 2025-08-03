@@ -343,6 +343,74 @@ material GUIMat/Slider
 		}
 	}
 }
+material GUIMat/ScrollerMarkerUp
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			
+			texture_unit
+			{
+				texture scrollerMarkerUp.png
+			}
+		}
+	}
+}
+material GUIMat/ScrollerMarkerDown
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			
+			texture_unit
+			{
+				texture scrollerMarkerDown.png
+			}
+		}
+	}
+}
+material GUIMat/ScrollerMarkerOver
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			
+			texture_unit
+			{
+				texture scrollerMarkerOver.png
+			}
+		}
+	}
+}
+material GUIMat/ScrollerMarkerHighlight
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+			
+			texture_unit
+			{
+				texture scrollerMarkerHighlight.png
+			}
+		}
+	}
+}
 material GUIMat/HPBar
 {
 	technique

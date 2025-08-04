@@ -1631,7 +1631,7 @@ GUIOverlay/Chat
 			width 0.02
 			height 0.145
         	}
-		element Panel(GUI/TextOutputBoxScrollerMarker) : GUITemplate/BasicButton
+		element Panel(GUI/TextOutputBoxScrollerMarker) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.43
 			top 0.145
@@ -1982,7 +1982,7 @@ GUIOverlay/EmoteBox
 			width 0.02
 			height 0.48
         	}
-		element Panel(GUI/EmoteScrollerMarker) : GUITemplate/BasicButton
+		element Panel(GUI/EmoteScrollerMarker) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.2
 			top 0
@@ -2092,7 +2092,7 @@ GUIOverlay/FriendBox
 			width 0.02
 			height 0.48
         	}
-		element Panel(GUI/FriendScrollerMarker) : GUITemplate/BasicButton
+		element Panel(GUI/FriendScrollerMarker) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.2
 			top 0
@@ -2157,7 +2157,7 @@ GUIOverlay/BioBox
 			width 0.02
 			height 0.48
         	}
-		element Panel(GUI/BioScrollerMarker) : GUITemplate/BasicButton
+		element Panel(GUI/BioScrollerMarker) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.2
 			top 0
@@ -2222,7 +2222,7 @@ GUIOverlay/TargetBioBox
 			width 0.02
 			height 0.48
         	}
-		element Panel(GUI/TargetBioScrollerMarker) : GUITemplate/BasicButton
+		element Panel(GUI/TargetBioScrollerMarker) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.2
 			top 0
@@ -2466,7 +2466,7 @@ GUIOverlay/StashBox
 			width 0.02
 			height 0.175
         	}
-		element Panel(GUI/StashScrollerMarker) : GUITemplate/BasicButton
+		element Panel(GUI/StashScrollerMarker) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.165
 			top 0

@@ -571,7 +571,7 @@ GUIOverlay/Options
 		element Panel(GUI/SettingsSliderMarker1) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.042
+			top 0.043
 			width 0.035
 			height 0.06
         	}

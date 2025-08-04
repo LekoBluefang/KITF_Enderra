@@ -571,8 +571,8 @@ GUIOverlay/Options
 		element Panel(GUI/SettingsSliderMarker1) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.04
-			width 0.025
+			top 0.042
+			width 0.035
 			height 0.06
         	}
 		element Panel(GUI/SettingsSlider2) : GUITemplate/BasicSlider
@@ -585,8 +585,8 @@ GUIOverlay/Options
 		element Panel(GUI/SettingsSliderMarker2) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.115
-			width 0.025
+			top 0.117
+			width 0.035
 			height 0.06
         	}
 		element Panel(GUI/SettingsSlider3) : GUITemplate/BasicSlider
@@ -599,8 +599,8 @@ GUIOverlay/Options
 		element Panel(GUI/SettingsSliderMarker3) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.19
-			width 0.025
+			top 0.194
+			width 0.035
 			height 0.06
         	}
 		element Panel(GUI/SettingsSlider4) : GUITemplate/BasicSlider
@@ -613,8 +613,8 @@ GUIOverlay/Options
 		element Panel(GUI/SettingsSliderMarker4) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.49
-			width 0.025
+			top 0.494
+			width 0.035
 			height 0.06
         	}
 	}

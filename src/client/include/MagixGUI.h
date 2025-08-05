@@ -3027,16 +3027,17 @@ public:
 		if(mHoverButton)
 		if(isCursorOverButton(mHoverButton))
 		{
-			if(hoverButtonType == GUITYPE_SCROLLER)
+			if (hoverButtonType == GUITYPE_CHECKBOX)
+			{
+				return;
+			}
+			if (hoverButtonType == GUITYPE_SCROLLER) 
 			{
 				mHoverButton->setMaterialName("GUIMat/ScrollerMarkerOver");
+				return;
 			}
-			if(hoverButtonType == GUITYPE_BUTTON)
-			{
 				mHoverButton->setMaterialName("GUIMat/ButtonOver");
-			}
-			else return;
-			
+
 			//Button actions
 			if(mHoverButton==mButton[BUTTON_QUIT] || mHoverButton==mButton[BUTTON_OPTIONQUIT])	//Quit
 			{

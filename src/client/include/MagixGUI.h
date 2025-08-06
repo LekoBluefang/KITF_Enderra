@@ -716,7 +716,6 @@ public:
 		mBoxText[GUI_TEXTOUTPUT] = OverlayManager::getSingleton().getOverlayElement("GUI/TextOutputBoxText");
 		mButton[BUTTON_TEXTOUTPUT] = OverlayManager::getSingleton().getOverlayElement("GUI/TextOutputBoxButton");
 		mButtonText[BUTTON_TEXTOUTPUT] = OverlayManager::getSingleton().getOverlayElement("GUI/TextOutputBoxButtonText");
-		mSizer[SIZER_TEXTOUTPUT] = OverlayManager::getSingleton().getOverlayElement("GUI/TextOutputBoxSizer");
 		mScroller[SCROLLER_TEXTOUTPUT] = OverlayManager::getSingleton().getOverlayElement("GUI/TextOutputBoxScroller");
 		mScrollerMarker[SCROLLER_TEXTOUTPUT] = OverlayManager::getSingleton().getOverlayElement("GUI/TextOutputBoxScrollerMarker");
 		isScrollerHorz[SCROLLER_TEXTOUTPUT] = false;
@@ -3072,9 +3071,9 @@ public:
 					toggleInputMode(false,OverlayManager::getSingleton().getOverlayElement("GUI/LogonPasswordText"),"Password: ",15,false,logonPassword,false,false,true);
 				return;
 			}
-			if (mHoverButton == mButton[BUTTON_SETTINGS])	//main menu settings
+			if (mHoverButton==mButton[BUTTON_SETTINGS])	//main menu settings
 			{
-				showStartScreenOverlay(false);
+				showStartScreenOverlay(true);
 				showOptionsOverlay(true);
 				return;
 			}
@@ -4529,20 +4528,9 @@ public:
 		if(!mBox[GUI_OPTIONS]->isVisible() && !mBox[GUI_SETTINGS]->isVisible() && !mBox[GUI_INTERFACE]->isVisible())
 		{
 			showOptionsOverlay(true);
-			if(mGameStateManager->isCampaign() && !mGameStateManager->isPaused())mGameStateManager->togglePause();
-			if(mGameStateManager->isInGame())
+			if (mGameStateManager->isCampaign() && !mGameStateManager->isPaused())
 			{
-				mButton[BUTTON_OPTIONRESTART]->show();
-				mButton[BUTTON_OPTIONQUIT]->setTop(0.35);
-				mBox[GUI_OPTIONS]->setTop(0.25);
-				mBox[GUI_OPTIONS]->setHeight(0.45);
-			}
-			else
-			{
-				mButton[BUTTON_OPTIONRESTART]->hide();
-				mButton[BUTTON_OPTIONQUIT]->setTop(0.275);
-				mBox[GUI_OPTIONS]->setTop(0.2875);
-				mBox[GUI_OPTIONS]->setHeight(0.375);
+				mGameStateManager->togglePause();
 			}
 		}
 		else

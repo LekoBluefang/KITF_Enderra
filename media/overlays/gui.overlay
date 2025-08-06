@@ -19,7 +19,7 @@ template container BorderPanel(GUITemplate/BasicBorderPanel)
 }
 template element TextArea(GUITemplate/BasicText)
 {
-    font_name TempusSans
+    font_name CaslonAntique
     char_height 0.05
     colour_top 1 0.6 0.2
     colour_bottom 1 0.6 0.2
@@ -389,19 +389,28 @@ GUIOverlay/TargetPanel
 GUIOverlay/Options
 {
 	zorder 498
-	container BorderPanel(GUI/Options) : GUITemplate/BasicBorderPanel
+	container BorderPanel(GUI/Options)
 	{
 		left 0.35
-		top 0.325
-		width 0.3
-		height 0.45
-
+		top 0.20
+		width 0.280
+		height 0.620
+		material GUIMat/StartScreen
+		
+		element TextArea(GUI/OptionsText) : GUITemplate/BasicText
+		{
+			left 0.140
+   			top 0.01
+			char_height 0.04
+			caption OPTIONS
+			alignment center
+		}
 		container Panel(GUI/OptionResumeButton) : GUITemplate/BasicButton
 		{
-			left 0.075
-			top 0.05
-			width 0.15
-			height 0.05
+			left 0.060
+			top 0.12
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/OptionResumeButtonText) : GUITemplate/CenteredText
 			{
@@ -410,10 +419,10 @@ GUIOverlay/Options
         	}
 		container Panel(GUI/OptionSettingsButton) : GUITemplate/BasicButton
 		{
-			left 0.075
-			top 0.125
-			width 0.15
-			height 0.05
+			left 0.060
+			top 0.205
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/OptionSettingsButtonText) : GUITemplate/CenteredText
 			{
@@ -422,10 +431,10 @@ GUIOverlay/Options
         	}
 		container Panel(GUI/OptionInterfaceButton) : GUITemplate/BasicButton
 		{
-			left 0.075
-			top 0.2
-			width 0.15
-			height 0.05
+			left 0.060
+			top 0.29
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/OptionInterfaceButtonText) : GUITemplate/CenteredText
 			{
@@ -434,10 +443,10 @@ GUIOverlay/Options
         	}
 		container Panel(GUI/OptionRestartButton) : GUITemplate/BasicButton
 		{
-			left 0.075
-			top 0.275
-			width 0.15
-			height 0.05
+			left 0.060
+			top 0.375
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/OptionRestartButtonText) : GUITemplate/CenteredText
 			{
@@ -446,10 +455,10 @@ GUIOverlay/Options
         	}
 		container Panel(GUI/OptionQuitButton) : GUITemplate/BasicButton
 		{
-			left 0.075
-			top 0.35
-			width 0.15
-			height 0.05
+			left 0.060
+			top 0.46
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/OptionQuitButtonText) : GUITemplate/CenteredText
 			{
@@ -518,7 +527,7 @@ GUIOverlay/Options
 			left 0.325
 			top 0.275
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/SettingsButtonText1) : GUITemplate/CenteredText
 			{
@@ -530,7 +539,7 @@ GUIOverlay/Options
 			left 0.325
 			top 0.35
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/SettingsButtonText2) : GUITemplate/CenteredText
 			{
@@ -542,7 +551,7 @@ GUIOverlay/Options
 			left 0.325
 			top 0.425
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/SettingsButtonText3) : GUITemplate/CenteredText
 			{
@@ -554,7 +563,7 @@ GUIOverlay/Options
 			left 0.215
 			top 0.575
 			width 0.12
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/SettingsButtonBackText) : GUITemplate/CenteredText
 			{
@@ -700,7 +709,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.05
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText1) : GUITemplate/CenteredText
 			{
@@ -712,7 +721,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.2
 			width 0.15
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText2) : GUITemplate/CenteredText
 			{
@@ -724,7 +733,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.275
 			width 0.15
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText3) : GUITemplate/CenteredText
 			{
@@ -736,7 +745,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.35
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText4) : GUITemplate/CenteredText
 			{
@@ -748,7 +757,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.425
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText5) : GUITemplate/CenteredText
 			{
@@ -760,7 +769,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.5
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText6) : GUITemplate/CenteredText
 			{
@@ -772,7 +781,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.575
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText7) : GUITemplate/CenteredText
 			{
@@ -784,7 +793,7 @@ GUIOverlay/Options
 			left 0.3
 			top 0.65
 			width 0.1
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonText8) : GUITemplate/CenteredText
 			{
@@ -796,7 +805,7 @@ GUIOverlay/Options
 			left 0.19
 			top 0.725
 			width 0.12
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/InterfaceButtonBackText) : GUITemplate/CenteredText
 			{
@@ -841,7 +850,7 @@ GUIOverlay/StartScreen
 			left 0.305
 			top 0.35
 			width 0.16
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/StartScreenButtonText1) : GUITemplate/CenteredText
 			{
@@ -854,7 +863,7 @@ GUIOverlay/StartScreen
 			left 0.305
 			top 0.45
 			width 0.16
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/StartScreenButtonText2) : GUITemplate/CenteredText
 			{
@@ -867,7 +876,7 @@ GUIOverlay/StartScreen
 			left 0.305
 			top 0.65
 			width 0.16
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/StartScreenButtonText3) : GUITemplate/CenteredText
 			{
@@ -880,7 +889,7 @@ GUIOverlay/StartScreen
 			left 0.305
 			top 0.55
 			width 0.16
-			height 0.05
+			height 0.06
 			
 			element TextArea(GUI/StartScreenButtonText4) : GUITemplate/CenteredText
 			{
@@ -891,9 +900,9 @@ GUIOverlay/StartScreen
 		container Panel(GUI/UpdateBox)
 		{
 			left 0.475
-			top 0.35
+			top 0.353
 			width 0.22
-			height 0.35
+			height 0.3535
 			material GUIMat/StatsBlockCenter
 
 			element TextArea(GUI/UpdateBoxText) : GUITemplate/BasicText
@@ -916,46 +925,46 @@ GUIOverlay/LogonScreen
 	zorder 490
 	container BorderPanel(GUI/LogonBox)
 	{
-		left 0.05
-		top 0.05
-		width 0.5
-		height 0.8
+		left 0.35
+		top 0.20
+		width 0.280
+		height 0.620
 		material GUIMat/StartScreen
 
 		element TextArea(GUI/LogonText1) : GUITemplate/BasicText
 		{
-			left 0.25
-   			top 0.10
-			char_height 0.08
-			caption Multiplayer
+			left 0.140
+   			top 0.01
+			char_height 0.04
+			caption MULTIPLAYER
 			alignment center
 		}
 		element TextArea(GUI/LogonUsernameText) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.25
+			left 0.060
+   			top 0.1
 			width 0.6
 			height 0.035
 			caption Username: 
 		}
 		element TextArea(GUI/LogonPasswordText) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.30
+			left 0.060
+   			top 0.15
 			width 0.6
 			height 0.035
 			caption Password: 
 		}
 		container Panel(GUI/LogonButtonBack) : GUITemplate/BasicButton
 		{
-			left 0.16
-			top 0.67
+			left 0.060
+			top 0.46
 			width 0.16
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/LogonButtonTextBack) : GUITemplate/CenteredText
 			{
@@ -964,10 +973,10 @@ GUIOverlay/LogonScreen
         	}
 		container Panel(GUI/LogonButton1) : GUITemplate/BasicButton
 		{
-			left 0.16
-			top 0.45
+			left 0.060
+			top 0.25
 			width 0.16
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/LogonButtonText1) : GUITemplate/CenteredText
 			{
@@ -976,10 +985,10 @@ GUIOverlay/LogonScreen
         	}
 		container Panel(GUI/LogonButton2) : GUITemplate/BasicButton
 		{
-			left 0.16
-			top 0.53
+			left 0.060
+			top 0.32
 			width 0.16
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/LogonButtonText2) : GUITemplate/CenteredText
 			{
@@ -988,10 +997,10 @@ GUIOverlay/LogonScreen
         	}
 		container Panel(GUI/LogonButton3) : GUITemplate/BasicButton
 		{
-			left 0.16
-			top 0.6
+			left 0.060
+			top 0.39
 			width 0.16
-			height 0.05
+			height 0.06
 
 			element TextArea(GUI/LogonButtonText3) : GUITemplate/CenteredText
 			{
@@ -1000,8 +1009,10 @@ GUIOverlay/LogonScreen
         	}
 		container Panel(GUI/LogonCheckBox) : GUITemplate/CheckBox
 		{
-			left 0.38
-			top 0.302
+			left 0.215
+			top 0.15
+			width 0.025
+			height 0.03
         	}
 	}
 }
@@ -1010,86 +1021,86 @@ GUIOverlay/CreateAccountScreen
 	zorder 490
 	container BorderPanel(GUI/CreateAccountBox)
 	{
-		left 0.05
-		top 0.05
-		width 0.5
-		height 0.8
+		left 0.35
+		top 0.20
+		width 0.280
+		height 0.620
 		material GUIMat/StartScreen
 
 		element TextArea(GUI/CreateAccountText) : GUITemplate/BasicText
 		{
-			left 0.25
-   			top 0.10
-			char_height 0.08
-			caption Create New Account
+			left 0.140
+   			top 0.012
+			char_height 0.035
+			caption NEW ACCOUNT
 			alignment center
 		}
 		element TextArea(GUI/CreateAccountText1) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.20
+			left 0.060
+   			top 0.1
 			width 0.6
 			height 0.035
 			caption Username: 
 		}
 		element TextArea(GUI/CreateAccountText2) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.25
+			left 0.060
+   			top 0.15
 			width 0.6
 			height 0.035
 			caption Password: 
 		}
 		element TextArea(GUI/CreateAccountText3) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.30
+			left 0.060
+   			top 0.20
 			width 0.6
 			height 0.035
 			caption Confirm Password: 
 		}
 		element TextArea(GUI/CreateAccountText4) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.35
+			left 0.060
+   			top 0.25
 			width 0.8
 			height 0.035
 			caption Email: 
 		}
 		element TextArea(GUI/CreateAccountText5) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.40
+			left 0.060
+   			top 0.30
 			width 0.45
 			height 0.07
 			caption Security Question: 
 		}
 		element TextArea(GUI/CreateAccountText6) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.50
+			left 0.060
+   			top 0.40
 			width 0.45
 			height 0.07
 			caption Answer: 
 		}
 		container Panel(GUI/CreateAccountButtonBack) : GUITemplate/BasicButton
 		{
-			left 0.155
-			top 0.65
-			width 0.18
-			height 0.04
+			left 0.060
+			top 0.53
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/CreateAccountButtonTextBack) : GUITemplate/CenteredText
 			{
@@ -1098,10 +1109,10 @@ GUIOverlay/CreateAccountScreen
         	}
 		container Panel(GUI/CreateAccountButton1) : GUITemplate/BasicButton
 		{
-			left 0.155
-			top 0.60
-			width 0.18
-			height 0.04
+			left 0.060
+			top 0.46
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/CreateAccountButtonText1) : GUITemplate/CenteredText
 			{
@@ -1115,66 +1126,66 @@ GUIOverlay/EditAccountScreen
 	zorder 490
 	container BorderPanel(GUI/EditAccountBox)
 	{
-		left 0.05
-		top 0.05
-		width 0.5
-		height 0.8
+		left 0.35
+		top 0.20
+		width 0.280
+		height 0.620
 		material GUIMat/StartScreen
 
 		element TextArea(GUI/EditAccountText) : GUITemplate/BasicText
 		{
-			left 0.25
-   			top 0.10
-			char_height 0.08
-			caption Change Password
+			left 0.140
+   			top 0.012
+			char_height 0.035
+			caption NEW PASSWORD
 			alignment center
 		}
 		element TextArea(GUI/EditAccountText1) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.20
+			left 0.060
+   			top 0.1
 			width 0.6
 			height 0.035
 			caption Username: 
 		}
 		element TextArea(GUI/EditAccountText2) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.25
+			left 0.060
+   			top 0.15
 			width 0.6
 			height 0.035
 			caption Old Password: 
 		}
 		element TextArea(GUI/EditAccountText3) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.35
+			left 0.060
+   			top 0.20
 			width 0.6
 			height 0.035
 			caption New Password: 
 		}
 		element TextArea(GUI/EditAccountText4) : GUITemplate/BasicText
 		{
-			font_name Tahoma
+			font_name CaslonAntique
     			char_height 0.035
-			left 0.05
-   			top 0.4
+			left 0.060
+   			top 0.25
 			width 0.8
 			height 0.035
 			caption Confirm Password: 
 		}
 		container Panel(GUI/EditAccountButtonBack) : GUITemplate/BasicButton
 		{
-			left 0.155
-			top 0.65
-			width 0.18
-			height 0.04
+			left 0.060
+			top 0.39
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/EditAccountButtonTextBack) : GUITemplate/CenteredText
 			{
@@ -1183,10 +1194,10 @@ GUIOverlay/EditAccountScreen
         	}
 		container Panel(GUI/EditAccountButton1) : GUITemplate/BasicButton
 		{
-			left 0.155
-			top 0.60
-			width 0.18
-			height 0.04
+			left 0.060
+			top 0.32
+			width 0.16
+			height 0.06
 
 			element TextArea(GUI/EditAccountButtonText1) : GUITemplate/CenteredText
 			{
@@ -1616,13 +1627,6 @@ GUIOverlay/Chat
 			{
 				caption Hide
 			}
-        	}
-		element Panel(GUI/TextOutputBoxSizer) : GUITemplate/BasicButton
-		{
-			left 0
-			top 0
-			width 0.48
-			height 0.01
         	}
 		element Panel(GUI/TextOutputBoxScroller) : GUITemplate/BasicSlider
 		{

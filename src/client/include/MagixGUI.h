@@ -5227,7 +5227,7 @@ public:
 			return;
 		}
 		short tTotal = 0;
-		for(short i=0; i<tDice; i++)tTotal += (short)Math::RangeRandom(1,tSides);
+		for(short i=0; i<tDice; i++)tTotal += Math::RangeRandom(1,tSides);
 
 		const String tCaption = "rolled "+tInput[0]+" of "+tInput[1]+" sides and got a "+StringConverter::toString(tTotal);
 		mChatManager->say(mUnitManager,mUnitManager->getPlayer(),tCaption,(mChatManager->getChannel()==0?CHAT_LOCALEVENT:(mChatManager->getChannel()==2?CHAT_PARTYEVENT:CHAT_EVENT)));

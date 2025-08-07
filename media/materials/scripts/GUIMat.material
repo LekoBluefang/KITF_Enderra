@@ -326,6 +326,74 @@ material GUIMat/ButtonHighlight
 		}
 	}
 }
+material GUIMat/CloserUp
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture closerUp.png
+			}
+		}
+	}
+}
+material GUIMat/CloserDown
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture closerDown.png
+			}
+		}
+	}
+}
+material GUIMat/CloserOver
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture closerOver.png
+			}
+		}
+	}
+}
+material GUIMat/CloserHighlight
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture closerHighlight.png
+			}
+		}
+	}
+}
 material GUIMat/Slider
 {
 	technique

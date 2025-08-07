@@ -50,6 +50,14 @@ template container Panel(GUITemplate/BasicButton)
     height 1
     material GUIMat/ButtonUp
 }
+template container Panel(GUITemplate/BasicCloser)
+{
+	left 0
+	top 0
+	width 1
+	height 1
+	material GUIMat/CloserUp
+}
 template container Panel(GUITemplate/BasicSlider)
 {
     left 0
@@ -466,66 +474,98 @@ GUIOverlay/Options
 			}
         	}
 	}
-	container BorderPanel(GUI/Settings) : GUITemplate/BasicBorderPanel
+	container BorderPanel(GUI/Settings)
 	{
-		left 0.225
-		top 0.075
-		width 0.55
-		height 0.675
-
+		left 0.35
+		top 0.20
+		width 0.280
+		height 0.620
+		material GUIMat/StartScreen
+		
+		element TextArea(GUI/SettingsTextA) : GUITemplate/BasicText
+		{
+			left 0.140
+   			top 0.01
+			char_height 0.04
+			alignment center
+			caption SETTINGS
+		}
+		element TextArea(GUI/SettingsTextB) : GUITemplate/BasicText
+		{
+			left 0.140
+   			top 0.08
+			char_height 0.04
+			alignment center
+			caption SOUND
+		}
+		element TextArea(GUI/SettingsTextC) : GUITemplate/BasicText
+		{
+			left 0.140
+   			top 0.275
+			char_height 0.04
+			alignment center
+			caption GRAPHICS
+		}
 		element TextArea(GUI/SettingsText1) : GUITemplate/BasicText
 		{
-			left 0.225
-   			top 0.05
-			alignment right
+			left 0.035
+   			top 0.123
+			char_height 0.04
+			alignment left
 			caption Music
 		}
 		element TextArea(GUI/SettingsText2) : GUITemplate/BasicText
 		{
-			left 0.225
-   			top 0.125
-			alignment right
-			caption GUI Sound
+			left 0.035
+   			top 0.173
+			char_height 0.04
+			alignment left
+			caption Interface
 		}
 		element TextArea(GUI/SettingsText3) : GUITemplate/BasicText
 		{
-			left 0.225
-   			top 0.2
-			alignment right
-			caption Sound
+			left 0.035
+   			top 0.223
+			char_height 0.04
+			alignment left
+			caption General
 		}
 		element TextArea(GUI/SettingsText4) : GUITemplate/BasicText
 		{
-			left 0.225
-   			top 0.275
-			alignment right
+			left 0.035
+   			top 0.333
+			char_height 0.04
+			alignment left
 			caption Shadows
 		}
 		element TextArea(GUI/SettingsText5) : GUITemplate/BasicText
 		{
-			left 0.225
-   			top 0.35
-			alignment right
+			left 0.035
+   			top 0.393
+			char_height 0.04
+			alignment left
 			caption Bloom Effect
 		}
 		element TextArea(GUI/SettingsText6) : GUITemplate/BasicText
 		{
-			left 0.225
-   			top 0.425
-			alignment right
+			left 0.035
+   			top 0.453
+			char_height 0.04
+			alignment left
 			caption Paged Geometry
 		}
 		element TextArea(GUI/SettingsText7) : GUITemplate/BasicText
 		{
-			left 0.225
-   			top 0.5
-			alignment right
+			left 0.035
+   			top 0.513
+			char_height 0.04
+			alignment left
 			caption View Distance
 		}
 		container Panel(GUI/SettingsButton1) : GUITemplate/BasicButton
 		{
-			left 0.325
-			top 0.275
+			left 0.15
+			top 0.325
 			width 0.1
 			height 0.06
 
@@ -536,8 +576,8 @@ GUIOverlay/Options
         	}
 		container Panel(GUI/SettingsButton2) : GUITemplate/BasicButton
 		{
-			left 0.325
-			top 0.35
+			left 0.15
+			top 0.385
 			width 0.1
 			height 0.06
 
@@ -548,8 +588,8 @@ GUIOverlay/Options
         	}
 		container Panel(GUI/SettingsButton3) : GUITemplate/BasicButton
 		{
-			left 0.325
-			top 0.425
+			left 0.15
+			top 0.445
 			width 0.1
 			height 0.06
 
@@ -558,71 +598,66 @@ GUIOverlay/Options
 				caption Off
 			}
         	}
-		container Panel(GUI/SettingsButtonBack) : GUITemplate/BasicButton
+		container Panel(GUI/SettingsCloser) : GUITemplate/BasicCloser
 		{
-			left 0.215
-			top 0.575
-			width 0.12
-			height 0.06
-
-			element TextArea(GUI/SettingsButtonBackText) : GUITemplate/CenteredText
-			{
-				caption Back
-			}
-        	}
+			left 0.251
+			top -0.002
+			width 0.035
+			height 0.060
+		}
 		element Panel(GUI/SettingsSlider1) : GUITemplate/BasicSlider
 		{
-			left 0.245
-			top 0.06
-			width 0.25
+			left 0.1
+			top 0.13
+			width 0.15
 			height 0.025
         	}
 		element Panel(GUI/SettingsSliderMarker1) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.043
+			top 0.11
 			width 0.035
 			height 0.06
         	}
 		element Panel(GUI/SettingsSlider2) : GUITemplate/BasicSlider
 		{
-			left 0.245
-			top 0.135
-			width 0.25
+			left 0.1
+			top 0.18
+			width 0.15
 			height 0.025
         	}
 		element Panel(GUI/SettingsSliderMarker2) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.117
+			top 0.16
 			width 0.035
 			height 0.06
         	}
 		element Panel(GUI/SettingsSlider3) : GUITemplate/BasicSlider
 		{
-			left 0.245
-			top 0.21
-			width 0.25
+			left 0.1
+			top 0.23
+			width 0.15
 			height 0.025
         	}
 		element Panel(GUI/SettingsSliderMarker3) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.194
+			top 0.21
 			width 0.035
 			height 0.06
         	}
 		element Panel(GUI/SettingsSlider4) : GUITemplate/BasicSlider
 		{
-			left 0.245
-			top 0.51
-			width 0.25
+			left 0.15
+			top 0.519
+			width 0.10
 			height 0.025
         	}
 		element Panel(GUI/SettingsSliderMarker4) : GUITemplate/BasicScrollerMarker
 		{
 			left 0.245
-			top 0.494
+			top 0.5
 			width 0.035
 			height 0.06
         	}

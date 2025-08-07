@@ -3,6 +3,7 @@
 
 #define MAX_BOXES 23
 #define MAX_BUTTONS 84
+#define MAX_CLOSERS 2
 #define MAX_SIZERS 1
 #define MAX_MOVERS 8
 #define MAX_SCROLLERS 14
@@ -95,7 +96,6 @@ enum BUTTON
  BUTTON_SETTINGS1,
  BUTTON_SETTINGS2,
  BUTTON_SETTINGS3,
- BUTTON_SETTINGSBACK,
  BUTTON_INTERFACE1,
  BUTTON_INTERFACE2,
  BUTTON_INTERFACE3,
@@ -148,6 +148,12 @@ enum BUTTON
  BUTTON_STASHBOX
 };
 
+enum CLOSER
+{
+	CLOSER_LOGON,
+	CLOSER_SETTINGS
+};
+
 #define SIZER_TEXTOUTPUT 0
 
 enum MOVER
@@ -198,6 +204,7 @@ enum GUITYPE
 {
 	GUITYPE_NONE,
 	GUITYPE_BUTTON,
+	GUITYPE_CLOSER,
 	GUITYPE_SIZER,
 	GUITYPE_MOVER,
 	GUITYPE_SCROLLER,
@@ -243,6 +250,7 @@ protected:
 	OverlayElement *mBoxText[MAX_BOXES];
 	OverlayElement *mButton[MAX_BUTTONS];
 	OverlayElement *mButtonText[MAX_BUTTONS];
+	OverlayElement *mCloser[MAX_CLOSERS];
 	OverlayElement *mSizer[MAX_SIZERS];
 	OverlayElement *mMover[MAX_MOVERS];
 	OverlayElement *mScroller[MAX_SCROLLERS];
@@ -361,6 +369,10 @@ public:
 		{
 			mButton[i] = 0;
 			mButtonText[i] = 0;
+		}
+		for(int i=0;i<MAX_CLOSERS;i++)
+		{
+			mCloser[i] = 0;		
 		}
 		for(int i=0;i<MAX_SIZERS;i++)mSizer[i] = 0;
 		for(int i=0;i<MAX_MOVERS;i++)mMover[i] = 0;
@@ -564,8 +576,7 @@ public:
 			mButton[BUTTON_SETTINGS1+i] = OverlayManager::getSingleton().getOverlayElement("GUI/SettingsButton" + tNum);
 			mButtonText[BUTTON_SETTINGS1+i] = OverlayManager::getSingleton().getOverlayElement("GUI/SettingsButtonText" + tNum);
 		}
-		mButton[BUTTON_SETTINGSBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/SettingsButtonBack");
-		mButtonText[BUTTON_SETTINGSBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/SettingsButtonBackText");
+		mCloser[CLOSER_SETTINGS] = OverlayManager::getSingleton().getOverlayElement("GUI/SettingsCloser");
 		for(int i=0;i<4;i++)
 		{
 			const String tNum = StringConverter::toString(i+1);
@@ -2447,18 +2458,18 @@ public:
 	void updateHover()
 	{
 		if(mHoverWindow)
-			if(!mHoverWindow->isVisible())mHoverWindow = 0;
+		if(!mHoverWindow->isVisible())mHoverWindow = 0;
 		if(!mHoverWindow)
 		{
 			for(int i=0;i<MAX_BOXES;i++)
 			{
 				if(mBox[i])
-				if(isCursorOverWindow(mBox[i]))
-				{
-					mHoverWindow = mBox[i];
-					break;
-				}
-				else if(mBox[i]==mHoverWindow)mHoverWindow = 0;
+					if(isCursorOverWindow(mBox[i]))
+					{
+						mHoverWindow = mBox[i];
+						break;
+					}
+					else if(mBox[i]==mHoverWindow)mHoverWindow = 0;
 			}
 		}
 		//Priority boxes
@@ -2505,6 +2516,45 @@ public:
 				if(mHoverButton==mButton[i] && !leftClick)mHoverButton = 0;
 				//special "hold to click" buttons
 				if(mButton[i]==mHoverButton && mButton[i]->getParent()==mHeldButtonWindow)mHoverButton = 0;
+			}
+		}
+		for(int i=0;i<MAX_CLOSERS;i++)
+		{
+			if(mCloser[i])
+			if(isCursorOverButton(mCloser[i]) && (mCloser[i]->getParent()==mHoverWindow||!mHoverWindow))
+			{
+				//special "hold to click" buttons
+				if(mHoverButton!=mCloser[i] && leftClick && mCloser[i]->getParent()==mHeldButtonWindow)
+				{
+					mHoverButton = mCloser[i];
+					mSoundManager->playGUISound(SOUND_CLICK);
+					hoverButtonType = GUITYPE_BUTTON;
+				}
+				//Hover
+				else if(!mHoverButton)
+				{
+					mCloser[i]->setMaterialName("GUIMat/CloserOver");
+					//not held before hovering
+					if(!leftClick)
+					{
+						mHoverButton = mCloser[i];
+						hoverButtonType = GUITYPE_CLOSER;
+					}
+				}
+				//for cases where: hovered, held, unhovered, hovered again
+				else if(mHoverButton==mCloser[i] && leftClick)
+				{
+					mCloser[i]->setMaterialName("GUIMat/CloserDown");
+				}
+			}
+			else 
+			{
+				//Unhover
+				if(mCloser[i]->getMaterialName()!="GUIMat/CloserUp" && mCloser[i]->getMaterialName()!="GUIMat/CloserHighlight")mCloser[i]->setMaterialName("GUIMat/CloserUp");
+				//unhovered and not held
+				if(mHoverButton==mCloser[i] && !leftClick)mHoverButton = 0;
+				//special "hold to click" buttons
+				if(mCloser[i]==mHoverButton && mCloser[i]->getParent()==mHeldButtonWindow)mHoverButton = 0;
 			}
 		}
 		for(int i=0;i<MAX_SIZERS;i++)
@@ -3374,7 +3424,7 @@ public:
 				togglePagedGeometryOn();
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_SETTINGSBACK])	//back to options
+			if (mHoverButton==mCloser[CLOSER_SETTINGS])	//back to options
 			{
 				mBox[GUI_SETTINGS]->hide();
 				mBox[GUI_OPTIONS]->show();

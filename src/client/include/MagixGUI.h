@@ -3,7 +3,7 @@
 
 #define MAX_BOXES 23
 #define MAX_BUTTONS 84
-#define MAX_CLOSERS 2
+#define MAX_CLOSERS 4
 #define MAX_SIZERS 1
 #define MAX_MOVERS 8
 #define MAX_SCROLLERS 14
@@ -75,7 +75,7 @@ enum BUTTON
  BUTTON_SELECTBOX4,
  BUTTON_NEWGAME,
  BUTTON_MULTIPLAYER,
- BUTTON_SETTINGS,
+ BUTTON_OPTIONS,
  BUTTON_QUIT,
  BUTTON_CHARSCREEN_L1,
  BUTTON_CHARSCREEN_R1,
@@ -136,11 +136,8 @@ enum BUTTON
  BUTTON_LOGON1,
  BUTTON_NEWACCOUNT,
  BUTTON_EDITACCOUNT,
- BUTTON_LOGONBACK,
  BUTTON_CREATEACCOUNT1,
- BUTTON_CREATEACCOUNTBACK,
  BUTTON_EDITACCOUNT1,
- BUTTON_EDITACCOUNTBACK,
  BUTTON_PARTYBOX,
  BUTTON_PARTYBOX1,
  BUTTON_PARTYBOX2,
@@ -151,7 +148,9 @@ enum BUTTON
 enum CLOSER
 {
 	CLOSER_LOGON,
-	CLOSER_SETTINGS
+	CLOSER_SETTINGS,
+	CLOSER_CREATEACCOUNT,
+	CLOSER_EDITACCOUNT
 };
 
 #define SIZER_TEXTOUTPUT 0
@@ -610,8 +609,8 @@ public:
 		mButtonText[BUTTON_MULTIPLAYER] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText2");
 		mButton[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton3");
 		mButtonText[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText3");
-		mButton[BUTTON_SETTINGS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton4");
-		mButtonText[BUTTON_SETTINGS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText4");
+		mButton[BUTTON_OPTIONS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton4");
+		mButtonText[BUTTON_OPTIONS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText4");
 
 		OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->hide();
 		OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBoxText")->setCaption(mDef->loadUpdateCaption());
@@ -626,9 +625,8 @@ public:
 		mButtonText[BUTTON_NEWACCOUNT] = OverlayManager::getSingleton().getOverlayElement("GUI/LogonButtonText2");
 		mButton[BUTTON_EDITACCOUNT] = OverlayManager::getSingleton().getOverlayElement("GUI/LogonButton3");
 		mButtonText[BUTTON_EDITACCOUNT] = OverlayManager::getSingleton().getOverlayElement("GUI/LogonButtonText3");
-		mButton[BUTTON_LOGONBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/LogonButtonBack");
-		mButtonText[BUTTON_LOGONBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/LogonButtonTextBack");
 		mCheckBox[CHECKBOX_LOGON] = OverlayManager::getSingleton().getOverlayElement("GUI/LogonCheckBox");
+		mCloser[CLOSER_LOGON] = OverlayManager::getSingleton().getOverlayElement("GUI/LogonCloser");
 
 		showLogonOverlay(false);
 
@@ -636,8 +634,7 @@ public:
 		mBox[GUI_CREATEACCOUNTBOX] = OverlayManager::getSingleton().getOverlayElement("GUI/CreateAccountBox");
 		mButton[BUTTON_CREATEACCOUNT1] = OverlayManager::getSingleton().getOverlayElement("GUI/CreateAccountButton1");
 		mButtonText[BUTTON_CREATEACCOUNT1] = OverlayManager::getSingleton().getOverlayElement("GUI/CreateAccountButtonText1");
-		mButton[BUTTON_CREATEACCOUNTBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/CreateAccountButtonBack");
-		mButtonText[BUTTON_CREATEACCOUNTBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/CreateAccountButtonTextBack");
+		mCloser[CLOSER_CREATEACCOUNT] = OverlayManager::getSingleton().getOverlayElement("GUI/CreateAccountCloser");
 
 		for(int i=0;i<MAX_CREATEACCOUNTINFO;i++)
 			mCreateAccountTextBox[i] = OverlayManager::getSingleton().getOverlayElement("GUI/CreateAccountText"+StringConverter::toString(i+1));
@@ -648,8 +645,7 @@ public:
 		mBox[GUI_EDITACCOUNTBOX] = OverlayManager::getSingleton().getOverlayElement("GUI/EditAccountBox");
 		mButton[BUTTON_EDITACCOUNT1] = OverlayManager::getSingleton().getOverlayElement("GUI/EditAccountButton1");
 		mButtonText[BUTTON_EDITACCOUNT1] = OverlayManager::getSingleton().getOverlayElement("GUI/EditAccountButtonText1");
-		mButton[BUTTON_EDITACCOUNTBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/EditAccountButtonBack");
-		mButtonText[BUTTON_EDITACCOUNTBACK] = OverlayManager::getSingleton().getOverlayElement("GUI/EditAccountButtonTextBack");
+		mCloser[CLOSER_EDITACCOUNT] = OverlayManager::getSingleton().getOverlayElement("GUI/EditAccountCloser");
 
 		for(int i=0;i<MAX_EDITACCOUNTINFO;i++)
 			mEditAccountTextBox[i] = OverlayManager::getSingleton().getOverlayElement("GUI/EditAccountText"+StringConverter::toString(i+1));
@@ -1986,7 +1982,7 @@ public:
 				mButton[BUTTON_NEWGAME]->hide();
 				mButton[BUTTON_MULTIPLAYER]->hide();
 				mButton[BUTTON_QUIT]->hide();
-				mButton[BUTTON_SETTINGS]->hide();
+				mButton[BUTTON_OPTIONS]->hide();
 				OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->hide();
 				OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenTitle")->setDimensions(8,1.2);
 				OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenTitle")->setPosition(-3.5,-0.29);
@@ -2012,7 +2008,7 @@ public:
 				mButton[BUTTON_NEWGAME]->show();
 				mButton[BUTTON_MULTIPLAYER]->show();
 				mButton[BUTTON_QUIT]->show();
-				mButton[BUTTON_SETTINGS]->show();
+				mButton[BUTTON_OPTIONS]->show();
 				OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->show();
 				logoCount = 6;
 			}
@@ -3121,13 +3117,13 @@ public:
 					toggleInputMode(false,OverlayManager::getSingleton().getOverlayElement("GUI/LogonPasswordText"),"Password: ",15,false,logonPassword,false,false,true);
 				return;
 			}
-			if (mHoverButton==mButton[BUTTON_SETTINGS])	//main menu settings
+			if (mHoverButton==mButton[BUTTON_OPTIONS])	//main menu options
 			{
 				showStartScreenOverlay(true);
 				showOptionsOverlay(true);
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_LOGONBACK])	//back to startscreen
+			if(mHoverButton==mCloser[CLOSER_LOGON])	//back to startscreen
 			{
 				mNetworkManager->disconnect();
 				showLogonOverlay(false);
@@ -3155,7 +3151,7 @@ public:
 				showEditAccountOverlay(true);
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_CREATEACCOUNTBACK])	//back to logon screen
+			if(mHoverButton==mCloser[CLOSER_CREATEACCOUNT])	//back to logon screen
 			{
 				showCreateAccountOverlay(false);
 				showOptionsOverlay(false);
@@ -3167,7 +3163,7 @@ public:
 				createAccount();
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_EDITACCOUNTBACK])	//back to logon screen
+			if(mHoverButton==mCloser[CLOSER_EDITACCOUNT])	//back to logon screen
 			{
 				showEditAccountOverlay(false);
 				showOptionsOverlay(false);

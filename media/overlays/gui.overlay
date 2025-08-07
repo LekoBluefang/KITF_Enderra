@@ -929,7 +929,7 @@ GUIOverlay/StartScreen
 			element TextArea(GUI/StartScreenButtonText4) : GUITemplate/CenteredText
 			{
 				font_name CaslonAntique
-				caption SETTINGS
+				caption OPTIONS
         	}
 			}
 		container Panel(GUI/UpdateBox)
@@ -994,18 +994,6 @@ GUIOverlay/LogonScreen
 			height 0.035
 			caption Password: 
 		}
-		container Panel(GUI/LogonButtonBack) : GUITemplate/BasicButton
-		{
-			left 0.060
-			top 0.46
-			width 0.16
-			height 0.06
-
-			element TextArea(GUI/LogonButtonTextBack) : GUITemplate/CenteredText
-			{
-				caption Back
-			}
-        	}
 		container Panel(GUI/LogonButton1) : GUITemplate/BasicButton
 		{
 			left 0.060
@@ -1049,6 +1037,13 @@ GUIOverlay/LogonScreen
 			width 0.025
 			height 0.03
         	}
+		container Panel(GUI/LogonCloser) : GUITemplate/BasicCloser
+		{
+			left 0.251
+			top -0.002
+			width 0.035
+			height 0.060
+		}
 	}
 }
 GUIOverlay/CreateAccountScreen
@@ -1130,18 +1125,6 @@ GUIOverlay/CreateAccountScreen
 			height 0.07
 			caption Answer: 
 		}
-		container Panel(GUI/CreateAccountButtonBack) : GUITemplate/BasicButton
-		{
-			left 0.060
-			top 0.53
-			width 0.16
-			height 0.06
-
-			element TextArea(GUI/CreateAccountButtonTextBack) : GUITemplate/CenteredText
-			{
-				caption Back
-			}
-        	}
 		container Panel(GUI/CreateAccountButton1) : GUITemplate/BasicButton
 		{
 			left 0.060
@@ -1154,6 +1137,13 @@ GUIOverlay/CreateAccountScreen
 				caption Create Account
 			}
         	}
+		container Panel(GUI/CreateAccountCloser) : GUITemplate/BasicCloser
+		{
+			left 0.251
+			top -0.002
+			width 0.035
+			height 0.060
+		}
 	}
 }
 GUIOverlay/EditAccountScreen
@@ -1215,18 +1205,6 @@ GUIOverlay/EditAccountScreen
 			height 0.035
 			caption Confirm Password: 
 		}
-		container Panel(GUI/EditAccountButtonBack) : GUITemplate/BasicButton
-		{
-			left 0.060
-			top 0.39
-			width 0.16
-			height 0.06
-
-			element TextArea(GUI/EditAccountButtonTextBack) : GUITemplate/CenteredText
-			{
-				caption Back
-			}
-        	}
 		container Panel(GUI/EditAccountButton1) : GUITemplate/BasicButton
 		{
 			left 0.060
@@ -1239,6 +1217,13 @@ GUIOverlay/EditAccountScreen
 				caption Confirm
 			}
         	}
+		container Panel(GUI/EditAccountCloser) : GUITemplate/BasicCloser
+		{
+			left 0.251
+			top -0.002
+			width 0.035
+			height 0.060
+		}
 	}
 }
 GUIOverlay/CampaignScreen

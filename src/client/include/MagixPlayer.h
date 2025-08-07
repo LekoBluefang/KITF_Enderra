@@ -819,7 +819,7 @@ public:
 	{
 		if(invulnerable && ratio<0)return false;
 		hpChanged = true;
-		hp += ratio * maxHP;
+		hp += (short)ratio * maxHP;
 		if(hp>maxHP)hp = maxHP;
 		if(hp<0)hp = 0;
 		return (hp==0);

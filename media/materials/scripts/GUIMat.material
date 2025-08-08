@@ -187,6 +187,24 @@ material GUIMat/StartScreen
 		}
 	}
 }
+material GUIMat/StartScreenSmall
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture startscreensmall.png
+				tex_address_mode clamp
+			}
+		}
+	}
+}
 material GUIMat/Title
 {
 	technique

@@ -2,7 +2,7 @@
 #define __MagixGUI_h_
 
 #define MAX_BOXES 23
-#define MAX_BUTTONS 80
+#define MAX_BUTTONS 81
 #define MAX_CLOSERS 4
 #define MAX_SIZERS 1
 #define MAX_MOVERS 8

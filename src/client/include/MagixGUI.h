@@ -2,7 +2,7 @@
 #define __MagixGUI_h_
 
 #define MAX_BOXES 23
-#define MAX_BUTTONS 84
+#define MAX_BUTTONS 80
 #define MAX_CLOSERS 4
 #define MAX_SIZERS 1
 #define MAX_MOVERS 8
@@ -607,10 +607,10 @@ public:
 		mButtonText[BUTTON_NEWGAME] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText1");
 		mButton[BUTTON_MULTIPLAYER] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton2");
 		mButtonText[BUTTON_MULTIPLAYER] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText2");
-		mButton[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton3");
-		mButtonText[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText3");
-		mButton[BUTTON_OPTIONS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton4");
-		mButtonText[BUTTON_OPTIONS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText4");
+		mButton[BUTTON_OPTIONS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton3");
+		mButtonText[BUTTON_OPTIONS] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText3");
+		mButton[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButton4");
+		mButtonText[BUTTON_QUIT] = OverlayManager::getSingleton().getOverlayElement("GUI/StartScreenButtonText4");
 
 		OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBox")->hide();
 		OverlayManager::getSingleton().getOverlayElement("GUI/UpdateBoxText")->setCaption(mDef->loadUpdateCaption());
@@ -1472,12 +1472,21 @@ public:
 		const vector<Skill>::type tSkillChange = mUnitManager->getPlayer()->popSkillChangedList();
 		for(int i=0;i<(int)tSkillChange.size();i++)
 		{
-			if (!mGameStateManager->isCampaign())mNetworkManager->sendSkillUpdate(tSkillChange[i].name, tSkillChange[i].stock);
-			if(getSkillText()==tSkillChange[i].name)updateSkillText(tSkillChange[i].stock>0?&tSkillChange[i]:0);
+			if(!mGameStateManager->isCampaign())
+			{
+				mNetworkManager->sendSkillUpdate(tSkillChange[i].name, tSkillChange[i].stock);
+			}
+			if(getSkillText()==tSkillChange[i].name)
+			{
+				updateSkillText(tSkillChange[i].stock > 0 ? &tSkillChange[i] : 0);
+			}
 		}
 		//Skill pickup
 		const String tPickup = mUnitManager->popPickupText();
-		if(tPickup!="")showPickupText(tPickup);
+		if(tPickup != "")
+		{
+			showPickupText(tPickup);
+		}
 		//New attacks
 		if(mUnitManager->popPlayerHasNewAttack())
 		{
@@ -2454,18 +2463,18 @@ public:
 	void updateHover()
 	{
 		if(mHoverWindow)
-		if(!mHoverWindow->isVisible())mHoverWindow = 0;
+			if(!mHoverWindow->isVisible())mHoverWindow = 0;
 		if(!mHoverWindow)
 		{
 			for(int i=0;i<MAX_BOXES;i++)
 			{
 				if(mBox[i])
-					if(isCursorOverWindow(mBox[i]))
-					{
-						mHoverWindow = mBox[i];
-						break;
-					}
-					else if(mBox[i]==mHoverWindow)mHoverWindow = 0;
+				if(isCursorOverWindow(mBox[i]))
+				{
+					mHoverWindow = mBox[i];
+					break;
+				}
+				else if(mBox[i]==mHoverWindow)mHoverWindow = 0;
 			}
 		}
 		//Priority boxes
@@ -2973,13 +2982,22 @@ public:
 			{
 				Real tFontHeight = 0;
 				short tApparentLine = 0;
-				const short tButtonLine = getListButtonLine(GUI_ITEMBOX,tFontHeight,tApparentLine);
-				if(tButtonLine==-1 || tButtonLine>=(int)MAX_EQUIP)return;
+				const short tButtonLine = getListButtonLine(GUI_ITEMBOX, tFontHeight, tApparentLine);
+				if (tButtonLine == -1 || tButtonLine >= (int)MAX_EQUIP)
+				{
+					return;
+				}
 
 				mListSelectTarget = mHoverWindow;
 				const String tItem = mUnitManager->getPlayer()->getEquip(tButtonLine);
-				if(tItem!="")listButtonData = mDef->getItemName(tItem);
-				else listButtonData = "";
+				if(tItem!="")
+				{
+					listButtonData = mDef->getItemName(tItem);
+				}
+				else
+				{
+					listButtonData = "";
+				}
 				listButtonLine = tButtonLine;
 
 				//Highlight
@@ -2998,11 +3016,17 @@ public:
 						mButtonText[BUTTON_LISTSELECT3]->setCaption("Delete");
 						mButton[BUTTON_LISTSELECT3]->show();
 					}
-					else mButton[BUTTON_LISTSELECT3]->hide();
+					else
+					{
+						mButton[BUTTON_LISTSELECT3]->hide();
+					}
 					mBox[GUI_LISTSELECTBOX]->setDimensions(0.1,0.04*(mButton[BUTTON_LISTSELECT3]->isVisible()?3:2));
 					mBox[GUI_LISTSELECTBOX]->setPosition(cursorX+0.02,cursorY+0.02);
 				}
-				else mBox[GUI_LISTSELECTBOX]->hide();
+				else
+				{
+					mBox[GUI_LISTSELECTBOX]->hide();
+				}
 
 				return;
 			}
@@ -3117,12 +3141,6 @@ public:
 					toggleInputMode(false,OverlayManager::getSingleton().getOverlayElement("GUI/LogonPasswordText"),"Password: ",15,false,logonPassword,false,false,true);
 				return;
 			}
-			if (mHoverButton==mButton[BUTTON_OPTIONS])	//main menu options
-			{
-				showStartScreenOverlay(true);
-				showOptionsOverlay(true);
-				return;
-			}
 			if(mHoverButton==mCloser[CLOSER_LOGON])	//back to startscreen
 			{
 				mNetworkManager->disconnect();
@@ -3131,12 +3149,12 @@ public:
 				showStartScreenOverlay(true);
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_LOGON1])	//logon multiplayer
+			if(mHoverButton==mButton[BUTTON_LOGON1]) //logon multiplayer
 			{
 				logOn();
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_NEWACCOUNT])	//new account screen
+			if(mHoverButton==mButton[BUTTON_NEWACCOUNT]) //new account screen
 			{
 				showLogonOverlay(false);
 				showOptionsOverlay(false);
@@ -3144,7 +3162,7 @@ public:
 				resetCreateAccountFields();
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_EDITACCOUNT])	//edit account screen
+			if(mHoverButton==mButton[BUTTON_EDITACCOUNT]) //edit account screen
 			{
 				showLogonOverlay(false);
 				showOptionsOverlay(false);
@@ -3158,24 +3176,24 @@ public:
 				showLogonOverlay(true);
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_CREATEACCOUNT1])	//create new account
+			if(mHoverButton==mButton[BUTTON_CREATEACCOUNT1]) //create new account
 			{
 				createAccount();
 				return;
 			}
-			if(mHoverButton==mCloser[CLOSER_EDITACCOUNT])	//back to logon screen
+			if(mHoverButton==mCloser[CLOSER_EDITACCOUNT]) //back to logon screen
 			{
 				showEditAccountOverlay(false);
 				showOptionsOverlay(false);
 				showLogonOverlay(true);
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_EDITACCOUNT1])	//confirm change password
+			if(mHoverButton==mButton[BUTTON_EDITACCOUNT1]) //confirm change password
 			{
 				confirmPasswordChange();
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_OPTIONRESUME])	//Options resume
+			if(mHoverButton==mButton[BUTTON_OPTIONRESUME] || mHoverButton==mButton[BUTTON_OPTIONS])	//Options resume
 			{
 				toggleShowOptions();
 				return;
@@ -3193,19 +3211,19 @@ public:
 				}
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_OPTIONSETTINGS])	//Settings
+			if(mHoverButton==mButton[BUTTON_OPTIONSETTINGS]) //Settings
 			{
 				mBox[GUI_OPTIONS]->hide();
 				mBox[GUI_SETTINGS]->show();
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_OPTIONINTERFACE])	//Interface Settings
+			if(mHoverButton==mButton[BUTTON_OPTIONINTERFACE]) //Interface Settings
 			{
 				mBox[GUI_OPTIONS]->hide();
 				mBox[GUI_INTERFACE]->show();
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_CAMPAIGNBACK])	//Campaignscreen Back
+			if(mHoverButton==mButton[BUTTON_CAMPAIGNBACK]) //Campaignscreen Back
 			{
 				if(campaignPage==0)
 				{
@@ -3216,7 +3234,7 @@ public:
 				else loadCampaigns(--campaignPage);
 				return;
 			}
-			if(mHoverButton==mButton[BUTTON_CAMPAIGNNEXT])	//Campaignscreen Next
+			if(mHoverButton==mButton[BUTTON_CAMPAIGNNEXT]) //Campaignscreen Next
 			{
 				loadCampaigns(++campaignPage);
 				return;
@@ -3420,7 +3438,7 @@ public:
 				togglePagedGeometryOn();
 				return;
 			}
-			if (mHoverButton==mCloser[CLOSER_SETTINGS])	//back to options
+			if(mHoverButton==mCloser[CLOSER_SETTINGS])	//back to options
 			{
 				mBox[GUI_SETTINGS]->hide();
 				mBox[GUI_OPTIONS]->show();
@@ -4551,12 +4569,24 @@ public:
 	}
 	const short getListButtonLine(const unsigned short &boxID, Real &fontHeight, short &apparentLine)
 	{
-		if(boxID>=MAX_BOXES)return -1;
-		if(!mBox[boxID] || !mBoxText[boxID])return -1;
+		if(boxID>=MAX_BOXES)
+		{
+			return -1;
+		}
+		if(!mBox[boxID] || !mBoxText[boxID])
+		{
+			return -1;
+		}
 		
 		const Real tCharHeight = StringConverter::parseReal(mBoxText[boxID]->getParameter("char_height"));
-		if(tCharHeight==0)return -1;
-		else fontHeight = tCharHeight;
+		if(tCharHeight==0)
+		{
+			return -1;
+		}
+		else
+		{
+			fontHeight = tCharHeight;
+		}
 		const Real tLines = (mBox[boxID]->getHeight()-mBoxText[boxID]->getTop())/tCharHeight - 1;
 		
 		const Real tY = cursorY - mBox[boxID]->getTop();

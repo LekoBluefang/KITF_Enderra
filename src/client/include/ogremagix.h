@@ -525,7 +525,7 @@ public:
 				mMagixHandler->getPlayer()->toggleAutoWalk();
 				break;
 			case KC_SYSRQ:
-				mWindow->writeContentsToTimestampedFile("screenshot", ".PNG");
+				mWindow->writeContentsToTimestampedFile("screenshots/screenshot", ".PNG");
 				mMagixHandler->getMagixGUI()->getAlertBox()->showAlert("Screenshot saved", 0.5, 0.5);
 				break;
 			default:
@@ -569,7 +569,7 @@ public:
 					mMagixHandler->getMagixGUI()->toggleIsTablet(true);
 					break;
 				case KC_SYSRQ:
-					mWindow->writeContentsToTimestampedFile("screenshot",".PNG");
+					mWindow->writeContentsToTimestampedFile("screenshots/screenshot",".PNG");
 					mMagixHandler->getMagixGUI()->getAlertBox()->showAlert("Screenshot saved",0.5,0.5);
 					break;
 

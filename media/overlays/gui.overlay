@@ -890,7 +890,7 @@ GUIOverlay/StartScreen
 			element TextArea(GUI/StartScreenButtonText1) : GUITemplate/CenteredText
 			{
 				font_name CaslonAntique
-				caption NEW GAME
+				caption SINGLEPLAYER
 			}
         	}
 		container Panel(GUI/StartScreenButton2) : GUITemplate/BasicButton
@@ -909,28 +909,28 @@ GUIOverlay/StartScreen
 		container Panel(GUI/StartScreenButton3) : GUITemplate/BasicButton
 		{
 			left 0.305
-			top 0.65
-			width 0.16
-			height 0.06
-
-			element TextArea(GUI/StartScreenButtonText3) : GUITemplate/CenteredText
-			{
-				font_name CaslonAntique
-				caption QUIT
-			}
-			}
-		container Panel(GUI/StartScreenButton4) : GUITemplate/BasicButton
-		{
-			left 0.305
 			top 0.55
 			width 0.16
 			height 0.06
 			
-			element TextArea(GUI/StartScreenButtonText4) : GUITemplate/CenteredText
+			element TextArea(GUI/StartScreenButtonText3) : GUITemplate/CenteredText
 			{
 				font_name CaslonAntique
 				caption OPTIONS
         	}
+			}
+		container Panel(GUI/StartScreenButton4) : GUITemplate/BasicButton
+		{
+			left 0.305
+			top 0.65
+			width 0.16
+			height 0.06
+
+			element TextArea(GUI/StartScreenButtonText4) : GUITemplate/CenteredText
+			{
+				font_name CaslonAntique
+				caption QUIT
+			}
 			}
 		container Panel(GUI/UpdateBox)
 		{
